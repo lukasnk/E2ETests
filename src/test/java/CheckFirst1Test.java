@@ -12,12 +12,11 @@ public class CheckFirst1Test {
     private static WebDriver driver;
 
     @BeforeTest
-
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         System.setProperty("webdriver.chrome.driver","chromedriver");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
