@@ -13,7 +13,7 @@ public class CheckFirst1Test {
     @BeforeTest
 
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver","../chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://demoqa.com/checkboxradio/");
     }
