@@ -2,6 +2,9 @@ import Pages.RadioButton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,10 +16,12 @@ public class CheckFirst1Test {
 
     @BeforeTest
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        System.setProperty("webdriver.chrome.driver","../chromedriver");
-        driver = new ChromeDriver(options);
+        FirefoxBinary options = new FirefoxBinary();
+        options.addCommandLineOptions("--headless");
+        System.setProperty("webdriver.geco.driver","../geckodriver");
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setBinary(options);
+        driver = new FirefoxDriver(firefoxOptions);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
