@@ -20,7 +20,7 @@ public class CheckFirst1Test {
 
     @BeforeTest
     public void setUp() {
-        File pathToBinary = new File("/opt/firefox/firefox");
+        File pathToBinary = new File("/usr/bin/firefox");
         FirefoxBinary options = new FirefoxBinary(pathToBinary);
         System.setProperty("webdriver.gecko.driver","../geckodriver");
 
