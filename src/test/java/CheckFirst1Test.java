@@ -30,7 +30,7 @@ public class CheckFirst1Test {
 
         options.addCommandLineOptions("--headless");
 
-        driver = new FirefoxDriver(ffoptions,desired);
+        driver = new FirefoxDriver(ffoptions);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
