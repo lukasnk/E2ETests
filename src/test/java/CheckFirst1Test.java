@@ -5,9 +5,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.io.File;
 
 
 public class CheckFirst1Test {
@@ -16,12 +19,16 @@ public class CheckFirst1Test {
 
     @BeforeTest
     public void setUp() {
-        FirefoxBinary options = new FirefoxBinary();
+        File pathToBinary = new File("/opt/firefox/firefox");
+        FirefoxBinary options = new FirefoxBinary(pathToBinary);
+
         options.addCommandLineOptions("--headless");
         System.setProperty("webdriver.geco.driver","../geckodriver");
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary(options);
-        driver = new FirefoxDriver(firefoxOptions);
+
+        FirefoxProfile ffProfile = new FirefoxProfile();
+//        FirefoxOptions firefoxOptions = new FirefoxOptions();
+//        firefoxOptions.setBinary(options);
+        driver = new FirefoxDriver(options);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
