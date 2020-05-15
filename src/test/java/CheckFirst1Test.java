@@ -22,7 +22,7 @@ public class CheckFirst1Test {
     public void setUp() {
         File pathToBinary = new File("/opt/firefox/firefox");
         FirefoxBinary options = new FirefoxBinary(pathToBinary);
-        System.setProperty("webdriver.geco.driver","../geckodriver");
+        System.setProperty("webdriver.gecko.driver","../geckodriver");
 
         DesiredCapabilities desired = DesiredCapabilities.firefox();
         FirefoxOptions ffoptions =new FirefoxOptions();
@@ -30,7 +30,7 @@ public class CheckFirst1Test {
 
         options.addCommandLineOptions("--headless");
 
-        driver = new FirefoxDriver(ffoptions);
+        driver = new FirefoxDriver(ffoptions,desired);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
