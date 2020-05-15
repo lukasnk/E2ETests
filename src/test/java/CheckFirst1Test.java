@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -22,13 +23,14 @@ public class CheckFirst1Test {
         File pathToBinary = new File("/opt/firefox/firefox");
         FirefoxBinary options = new FirefoxBinary(pathToBinary);
 
+        DesiredCapabilities desired = DesiredCapabilities.firefox();
+        FirefoxOptions ffoptions =new FirefoxOptions();
+        desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, ffoptions.setBinary(options));
+
         options.addCommandLineOptions("--headless");
         System.setProperty("webdriver.geco.driver","../geckodriver");
 
-        FirefoxProfile ffProfile = new FirefoxProfile();
-//        FirefoxOptions firefoxOptions = new FirefoxOptions();
-//        firefoxOptions.setBinary(options);
-        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver(ffoptions);
         driver.get("https://demoqa.com/checkboxradio/");
     }
 
