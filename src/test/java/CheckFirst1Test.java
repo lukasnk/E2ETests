@@ -1,4 +1,5 @@
 import Pages.RadioButton;
+import com.sun.deploy.util.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,18 +21,25 @@ public class CheckFirst1Test {
 
     @BeforeTest
     public void setUp() {
-        File pathToBinary = new File("/usr/bin/firefox");
-        FirefoxBinary options = new FirefoxBinary(pathToBinary);
-        System.setProperty("webdriver.gecko.driver","../geckodriver");
 
-        DesiredCapabilities desired = DesiredCapabilities.firefox();
-        FirefoxOptions ffoptions =new FirefoxOptions();
-        desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, ffoptions.setBinary(options));
+        if(System.getProperty("os.name").equals("Windows 10")){
+            System.setProperty("webdriver.gecko.driver", "../geckodriver.exe");
+            driver = new FirefoxDriver();
+            driver.get("https://demoqa.com/checkboxradio/");
+        }else {
+            File pathToBinary = new File("/usr/bin/firefox");
+            FirefoxBinary options = new FirefoxBinary(pathToBinary);
+            System.setProperty("webdriver.gecko.driver", "../geckodriver");
 
-        options.addCommandLineOptions("--headless");
+            DesiredCapabilities desired = DesiredCapabilities.firefox();
+            FirefoxOptions ffoptions = new FirefoxOptions();
+            desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, ffoptions.setBinary(options));
 
-        driver = new FirefoxDriver(ffoptions);
-        driver.get("https://demoqa.com/checkboxradio/");
+            options.addCommandLineOptions("--headless");
+
+            driver = new FirefoxDriver(ffoptions);
+            driver.get("https://demoqa.com/checkboxradio/");
+        }
     }
 
     @Test
