@@ -1,4 +1,5 @@
-import Pages.RadioButton;
+import Pages.PractiseSwitchWindows;
+import Pages.ToolsQAMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,18 +11,15 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 
-
-public class CheckFirst1Test {
-
+public class NewWindowTest {
     private static WebDriver driver;
 
     @BeforeTest
-    public void setUp() {
-
+    public void SetUp(){
         if(System.getProperty("os.name").equals("Windows 10")){
             System.setProperty("webdriver.gecko.driver", "../geckodriver.exe");
             driver = new FirefoxDriver();
-            driver.get("https://demoqa.com/checkboxradio/");
+            driver.get("https://demoqa.com/automation-practice-switch-windows-2/");
         }else {
             File pathToBinary = new File("/usr/bin/firefox");
             FirefoxBinary options = new FirefoxBinary(pathToBinary);
@@ -39,12 +37,25 @@ public class CheckFirst1Test {
     }
 
     @Test
-    public void test(){
-        RadioButton.locate(driver).click();
+    public void CheckNewWindows(){
+
+        String CurrentWindowHandler = driver.getWindowHandle();
+        PractiseSwitchWindows.NewBrowserWindowButton(driver).click();
+
+        for(String WindowHandler: driver.getWindowHandles()){
+            driver.switchTo().window(WindowHandler);
+            driver.manage().window().fullscreen();
+        }
+
+        ToolsQAMainPage.CheckHomePage(driver).click();
+        ToolsQAMainPage.CheckHomePage(driver).equals("Free QA Automation Tools Tutorial for Beginners with Examples");
+
+        driver.close();
+        driver.switchTo().window(CurrentWindowHandler);
     }
 
     @AfterTest
     public void After(){
-        driver.close();
+        driver.quit();
     }
 }

@@ -3,7 +3,8 @@
 <suite name="Test">
     <test name=" Tests">
         <classes>
-            <class name="CheckFirst1Test"></class>
+            <class name="CheckRadioButtonTest"></class>
+            <class name="NewWindowTest"></class>
         </classes>
     </test>
 </suite>
