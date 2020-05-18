@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 
 
-public class CheckFirst1Test {
+public class CheckRadioButtonTest {
 
     private static WebDriver driver;
 
@@ -39,7 +39,7 @@ public class CheckFirst1Test {
     }
 
     @Test
-    public void test(){
+    public void ClickRadioButton(){
         RadioButton.locate(driver).click();
     }
 
