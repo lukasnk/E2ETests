@@ -32,7 +32,7 @@ public class NewWindowTest {
             options.addCommandLineOptions("--headless");
 
             driver = new FirefoxDriver(ffoptions);
-            driver.get("https://demoqa.com/checkboxradio/");
+            driver.get("https://demoqa.com/automation-practice-switch-windows-2/");
         }
     }
 
