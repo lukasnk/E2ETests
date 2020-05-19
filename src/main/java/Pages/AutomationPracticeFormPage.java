@@ -22,6 +22,5 @@ public class AutomationPracticeFormPage {
         } catch (InterruptedException | IOException ex) {
             System.out.println(ex.toString());
         }
-        driver.close();
     }
 }
