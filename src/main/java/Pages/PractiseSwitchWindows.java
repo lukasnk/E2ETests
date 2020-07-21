@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class PractiseSwitchWindows {
 
-    public PractiseSwitchWindows() {
-    }
-
     public static WebElement NewBrowserWindowButton(WebDriver driver){
         return driver.findElement(By.id("windowButton"));
     }
