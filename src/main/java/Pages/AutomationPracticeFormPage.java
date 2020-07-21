@@ -17,7 +17,7 @@ public class AutomationPracticeFormPage {
 
         byte[] data = Base64.getMimeDecoder().decode(link);
 
-        try (OutputStream stream = new FileOutputStream("./image.bmp")){
+        try (OutputStream stream = new FileOutputStream("../image.bmp")){
                 stream.write(data);
         }
         catch (Exception e){

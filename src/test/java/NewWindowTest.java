@@ -40,7 +40,6 @@ public class NewWindowTest {
 
     @AfterTest
     public void After(){
-
         driver.quit();
     }
 }
