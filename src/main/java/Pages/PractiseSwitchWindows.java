@@ -10,6 +10,6 @@ public class PractiseSwitchWindows {
     }
 
     public static WebElement NewBrowserWindowButton(WebDriver driver){
-        return driver.findElement(By.id("button1"));
+        return driver.findElement(By.id("windowButton"));
     }
 }
