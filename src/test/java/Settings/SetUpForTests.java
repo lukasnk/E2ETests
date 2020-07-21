@@ -1,25 +1,24 @@
-import Pages.PractiseSwitchWindows;
-import Pages.ToolsQAMainPage;
+package Settings;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import java.io.File;
 
-public class NewWindowTest {
-    private static WebDriver driver;
+public class SetUpForTests {
 
-    @BeforeTest
-    public void SetUp(){
+    public static WebDriver SetUp(String webPath){
+
+        WebDriver driver;
+
         if(System.getProperty("os.name").equals("Windows 10")){
             System.setProperty("webdriver.gecko.driver", "../geckodriver.exe");
             driver = new FirefoxDriver();
-            driver.get("https://demoqa.com/browser-windows");
+            driver.get(webPath);
+            return driver;
         }else {
             File pathToBinary = new File("/usr/bin/firefox");
             FirefoxBinary options = new FirefoxBinary(pathToBinary);
@@ -32,30 +31,8 @@ public class NewWindowTest {
             options.addCommandLineOptions("--headless");
 
             driver = new FirefoxDriver(ffoptions);
-            driver.get("https://demoqa.com/browser-windows");
-            driver.manage().window().fullscreen();
+            driver.get("webPath");
+            return driver;
         }
-    }
-
-    @Test
-    public void CheckNewWindows(){
-
-        String CurrentWindowHandler = driver.getWindowHandle();
-        PractiseSwitchWindows.NewBrowserWindowButton(driver).click();
-
-        for(String WindowHandler: driver.getWindowHandles()){
-            driver.switchTo().window(WindowHandler);
-        }
-
-        ToolsQAMainPage.CheckHomePage(driver).equals("This is a sample page");
-
-        driver.close();
-        driver.switchTo().window(CurrentWindowHandler);
-    }
-
-    @AfterTest
-    public void After(){
-
-        driver.quit();
     }
 }
