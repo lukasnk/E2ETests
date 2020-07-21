@@ -1,5 +1,6 @@
 import Pages.PractiseSwitchWindows;
 import Pages.ToolsQAMainPage;
+import Settings.SetUpForTests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,29 +13,13 @@ import org.testng.annotations.Test;
 import java.io.File;
 
 public class NewWindowTest {
+
     private static WebDriver driver;
-
+    private String webPath = "https://demoqa.com/browser-windows";
     @BeforeTest
-    public void SetUp(){
-        if(System.getProperty("os.name").equals("Windows 10")){
-            System.setProperty("webdriver.gecko.driver", "../geckodriver.exe");
-            driver = new FirefoxDriver();
-            driver.get("https://demoqa.com/browser-windows");
-        }else {
-            File pathToBinary = new File("/usr/bin/firefox");
-            FirefoxBinary options = new FirefoxBinary(pathToBinary);
-            System.setProperty("webdriver.gecko.driver", "../geckodriver");
 
-            DesiredCapabilities desired = DesiredCapabilities.firefox();
-            FirefoxOptions ffoptions = new FirefoxOptions();
-            desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, ffoptions.setBinary(options));
-
-            options.addCommandLineOptions("--headless");
-
-            driver = new FirefoxDriver(ffoptions);
-            driver.get("https://demoqa.com/browser-windows");
-            driver.manage().window().fullscreen();
-        }
+    public void setUp() {
+        driver = SetUpForTests.SetUp(webPath);
     }
 
     @Test
